@@ -5,7 +5,7 @@
       <div class="title">
         Notícias
       </div>
-      <div class="notice-box">
+      <div class="notice-box" v-if="this.notices.length > 0">
         <div class="notice" v-for="notice in this.notices" :key='notice._id'>
           <img class="notice-image" src="../../assets/laboratorio.jpg" alt="">
           <div class="notice-title">{{ notice.title }}</div>
@@ -16,6 +16,9 @@
             Saiba Mais
           </router-link>
         </div>
+      </div>
+      <div class="notice-box" v-else>
+        <h2>Não há notícias a serem mostradas</h2>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@
       <div class="title">
         Cursos
       </div>
-      <div class="course-box">
+      <div class="course-box" v-if="this.courses.length > 0">
         <div class="course" v-for="course in this.courses" :key='course._id'>
           <div class="course-img">
             <img src="../../assets/courses-img.png" alt="">
@@ -18,6 +18,9 @@
 
           <router-link class="course-more" :to="{name: 'course', params: {id: course._id}}">Saiba Mais</router-link>
         </div>
+      </div>
+      <div class="course-box" v-else>
+        <h2>Não há cursos a serem exibidos</h2>
       </div>
     </div>
   </div>
