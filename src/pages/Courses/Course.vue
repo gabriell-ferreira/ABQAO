@@ -10,6 +10,9 @@
           <img src="../../assets/courses-img.png" alt="">
         </div>
         <div class="course-content">
+          <div class="course-description">
+            <p>{{this.course.description}}</p>
+          </div>
           <div class="course-hours">
             <img src="../../assets/clock.png" alt="">
             {{this.course.hours}} horas
@@ -103,6 +106,10 @@ export default {
     display: flex;
     align-items: center;
     flex-direction: column;
+  }
+
+  .course-description {
+    max-width: 35rem;
   }
 
   .course-hours {

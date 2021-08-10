@@ -30,6 +30,11 @@
             <input v-model="course.link" placeholder="Ex: https://www.link.com" type="text" id="admin-course-link">
           </label>
 
+          <label for="admin-course-description">
+            Descrição do curso:
+            <textarea v-model="course.description" name="admin-course-description" id="admin-course-description"></textarea>
+          </label>
+
           <button type="submit">Adicionar Curso</button>
         </form>
         <form @submit.prevent='createNotice' class="admin-notice">
@@ -76,7 +81,8 @@ export default {
       course: {
         title: null,
         hours: null,
-        link: null
+        link: null,
+        description: null
       },
       notice: {
         title: null,
@@ -102,6 +108,10 @@ export default {
         this.errorsCourses.push('O link para o curso é obrigatório')
         e.preventDefault()
       }
+      if(!this.course.description){
+        this.errorsCourses.push('A descrição do curso é obrigatória')
+        e.preventDefault()
+      }
 
       await api().post('/registerCourse', this.course).then(response => {
         alert('Curso adicionado com sucesso.')
@@ -109,6 +119,7 @@ export default {
         this.course.title = '';
         this.course.hours = '';
         this.course.link = '';
+        this.course.description = '';
 
         this.errorsCourses = []
 
