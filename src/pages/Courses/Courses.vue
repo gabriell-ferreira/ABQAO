@@ -84,7 +84,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     margin: 1rem 5rem
   }
 
