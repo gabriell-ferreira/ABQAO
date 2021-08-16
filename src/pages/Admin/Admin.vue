@@ -48,17 +48,22 @@
           </p>
           <label for="admin-title-notice">
             Título da notícia:
-            <input v-model="notice.title" type="text" placeholder="Ex: Título da notícia" id="admin-title-notice">
+            <input v-model="notice.title" name="title" type="text" placeholder="Ex: Título da notícia" id="admin-title-notice">
           </label>
 
           <label for="admin-notice-date">
             Data da notícia:
-            <input v-model="notice.date" placeholder="Ex: 01/01/2021" type="text" id="admin-notice-date">
+            <input v-model="notice.date" name="date" placeholder="Ex: 01/01/2021" type="text" id="admin-notice-date">
+          </label>
+
+          <label for="admin-file-image">
+            Banner da notícia:
+            <input name="image" @change="onFileUpload" type="file" id="admin-notice-image">
           </label>
 
           <label for="admin-notice-content">
             Conteúdo da notícia:
-            <textarea v-model="notice.content" name="admin-notice-content" id="admin-notice-content"></textarea>
+            <textarea v-model="notice.content" name="content" id="admin-notice-content"></textarea>
           </label>
 
           <button type='submit'>Adicionar Notícia</button>
@@ -87,13 +92,17 @@ export default {
       notice: {
         title: null,
         date: null,
-        content: null
+        content: null,
+        file: null
       },
       errorsCourses: [],
       errorsNotices: []
     }
   },
   methods: {
+    onFileUpload(event){
+      this.notice.file = event.target.files[0]
+    },
     async createCourse(e){
       this.errorsCourses = []
       if(!this.course.title){
@@ -143,12 +152,24 @@ export default {
         e.preventDefault()
       }
 
-      await api().post('/registerNotice', this.notice).then(response => {
+      const data = new FormData()
+      data.append('title', this.notice.title)
+      data.append('date', this.notice.date)
+      data.append('content', this.notice.content)
+      data.append('image', this.notice.file)
+      // data.append('image', this.notice.image)
+      const config = {
+        header : {
+          'Content-Type' : 'multipart/form-data'
+        }
+      }
+      await api().post('/registerNotice', data, config).then(response => {
         alert('Notícia adicionada com sucesso.')
 
         this.notice.title = '';
         this.notice.date = '';
         this.notice.content = '';
+        this.notice.file = '';
 
         this.errorsNotices = []
 

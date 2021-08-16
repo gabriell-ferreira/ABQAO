@@ -7,7 +7,7 @@
       </div>
       <div class="notice-box" v-if="this.notices.length > 0">
         <div class="notice" v-for="notice in this.notices" :key='notice._id'>
-          <img class="notice-image" src="../../assets/laboratorio.jpg" alt="">
+          <img class="notice-image" :src="notice.image" alt="">
           <div class="notice-title">{{ notice.title }}</div>
           <div class="notice-date">{{ notice.date }}</div>
           <div class="notice-description">{{ notice.description }}</div>
@@ -27,11 +27,13 @@
 <script>
 import Menu from '../../components/Menu.vue';
 import api from '../../services/api';
+import env from '../../../config/prod.env'
 
 export default {
   data(){
     return{
       notices: [],
+      env
     }
   },
   components: {

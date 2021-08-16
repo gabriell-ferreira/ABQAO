@@ -7,7 +7,7 @@
           {{this.notice.title}}
         </div>
 
-        <img class="notice-image" src="../../assets/laboratorio.jpg" alt="">
+        <img class="notice-image" :src="this.notice.image" alt="banner da notícia">
 
         <div class="notice-content">
           <div class="notice-date">
@@ -24,7 +24,7 @@
 
 <script>
 import api from '../../services/api';
-import Menu from '../../components/Menu.vue'
+import Menu from '../../components/Menu.vue';
 
 export default {
   data(){

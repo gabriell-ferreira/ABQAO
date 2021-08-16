@@ -8,7 +8,7 @@
         <div v-for="(notice, index) in this.notices" :key="notice._id">
           <div class="notice" v-if="index >= notices.length-4">
             
-            <img class="notice-image" src="../assets/laboratorio.jpg" alt="">
+            <img class="notice-image" :src="notice.image" alt="">
             
             <div class="notice-content">
               <div class="notice-title">
