@@ -92,6 +92,10 @@ export default {
     flex-direction: column;
   }
 
+  .notice-content p {
+    text-align: justify;
+  }
+
   .notice-date {
     font-weight: bold;
     color: var(--dark-gray);
