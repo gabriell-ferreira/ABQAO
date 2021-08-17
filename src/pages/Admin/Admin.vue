@@ -156,7 +156,8 @@ export default {
       data.append('title', this.notice.title)
       data.append('date', this.notice.date)
       data.append('content', this.notice.content)
-      data.append('image', this.notice.file)
+      data.append('image', this.notice.file, this.notice.file.name.replace(/\s/g, '-'))
+
       // data.append('image', this.notice.image)
       const config = {
         header : {
